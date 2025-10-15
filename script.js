@@ -129,3 +129,26 @@ document.querySelectorAll('a[href]').forEach(link => {
     }
   });
 });
+
+// Wait until DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+  const instructionsPanel = document.querySelector(".instructions-panel");
+  const cake = document.querySelector(".cake");
+
+  // Track if instructions are hidden
+  let instructionsHidden = false;
+
+  // Function to hide instructions
+  function hideInstructions() {
+    if (!instructionsHidden) {
+      instructionsPanel.style.display = "none";
+      instructionsHidden = true;
+    }
+  }
+
+  // Example: add a candle when cake is clicked
+  cake.addEventListener("click", () => {
+    hideInstructions();
+
+  });
+});
