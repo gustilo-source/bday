@@ -1,0 +1,170 @@
+
+@font-face {
+  font-family: 'FortalesiaPlain_PERSONAL_USE_ONLY';
+  src: url('fonts/FortalesiaPlain_PERSONAL_USE_ONLY.otf') format('opentype'); 
+}
+@font-face {
+  font-family: 'poppins';
+  src: url('fonts/poppins_regular.ttf') format('truetype'); 
+}
+@font-face {
+  font-family: 'Aston Script';
+  src: url('fonts/Aston Script.ttf') format('truetype'); 
+}
+
+/* 🌷 Body */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: url('img/bg (2).png') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+/* 🎞 Film Container */
+.film-container {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* even spacing between the two film strips */
+  margin-bottom: 10px; /* leaves room for footer */
+}
+
+/* 🎬 Film Strips */
+.film-strip {
+  width: 120%;
+  transform: rotate(-3deg);
+  display: flex;
+  justify-content: center;
+  animation: filmMove 5s infinite ease-in-out alternate;
+}
+
+.film-strip-two {
+  width: 120%;
+  transform: rotate(3deg);
+  display: flex;
+  justify-content: center;
+  margin-top: -430px;
+  animation: filmMoveReverse 5s infinite ease-in-out alternate;
+}
+
+/* 🎞 Film Animation */
+@keyframes filmMove {
+  0% { transform: rotate(-3deg) translateY(0); }
+  50% { transform: rotate(-1deg) translateY(-10px); }
+  100% { transform: rotate(-3deg) translateY(0); }
+}
+
+@keyframes filmMoveReverse {
+  0% { transform: rotate(3deg) translateY(0); }
+  50% { transform: rotate(1deg) translateY(10px); }
+  100% { transform: rotate(3deg) translateY(0); }
+}
+
+/* 📸 Film Image */
+.film-image {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.3));
+}
+
+/* 💞 Footer */
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #fb6f92;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'FortalesiaPlain_PERSONAL_USE_ONLY', cursive;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.heart {
+  animation: blink 1s linear infinite;
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  margin-top: -2px;
+}
+
+@keyframes blink {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Navigation buttons - positioned on left & right sides at the bottom */
+.gallery-btn-group {
+  position: absolute;
+  bottom: 50px; 
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 10;
+}
+
+.btn {
+  background-color: #ff8fa6;
+  color: white;
+  text-decoration: none;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+.btn.next {
+  margin-right: 30px; /* ✅ moves the Next button slightly inward from the edge */
+}
+.btn:hover {
+   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+  background-color: #d14d75;
+}
+
+/* ✨ Fade-in Animation for Buttons */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translate(-50%, 30px); }
+  100% { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 600px) {
+  .film-container {
+    max-width: 95%;
+  }
+
+  .film-strip-two {
+    margin-top: -250px;
+  }
+
+  .gallery-btn-group {
+    bottom: 90px;
+    gap: 20px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}

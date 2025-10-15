@@ -1,0 +1,232 @@
+
+
+@font-face {
+  font-family: 'FortalesiaPlain_PERSONAL_USE_ONLY';
+  src: url('fonts/FortalesiaPlain_PERSONAL_USE_ONLY.otf') format('opentype'); 
+}
+@font-face {
+  font-family: 'poppins';
+  src: url('fonts/poppins_regular.ttf') format('truetype'); 
+}
+@font-face {
+  font-family: 'Aston Script';
+  src: url('fonts/Aston Script.ttf') format('truetype'); 
+}
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Jost", sans-serif;
+}
+
+/* Fixed: Remove the dot and use the same gradient as your first page */
+body {
+ background: url('img/bg (2).png') no-repeat center center;
+background-size: cover;
+overflow: hidden; /* Prevents scrolling issues */
+}
+
+
+/* Hearts background - BEHIND everything */
+#canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; 
+    pointer-events: none;
+}
+
+.slider-container{
+  width: 100%;
+  height: 100vh;
+  background: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.slider-images{
+  display: flex;
+  align-items: center;
+  gap: 21px;
+  position: relative;
+  z-index: 2;
+}
+
+.slider-images img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.slider-img{
+  width: 110px;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.7s ease;
+  z-index: 3;
+}
+
+.slider-images .slider-img:first-child, .slider-images .slider-img:last-child{
+  height: 320px;
+}
+
+.slider-images .slider-img:nth-child(2), .slider-images .slider-img:nth-child(6){
+  height: 400px;
+}
+
+.slider-images .slider-img:nth-child(3), .slider-images .slider-img:nth-child(4), .slider-images .slider-img:nth-child(5){
+  height: 450px;
+}
+
+h1{
+  font-family: "Jost", sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  right: 15%;
+  left: 15%;
+  transform: rotate(270deg);
+  transition: 0.7s ease;
+}
+.details{
+  position: absolute;
+  bottom: 43px;
+  left: 43px;
+}
+  .slider-img .details {
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+}
+.details .btn-group {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.details h2{
+  font-family: "Jost", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  text-align: left;
+  line-height: 44px;
+  text-align: left;
+  color: #fff;
+  text-transform: uppercase;
+  transition: 0.7s ease;
+  display: none;
+}
+.details p{
+  font-family: "Jost", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: left;
+  line-height: 33px;
+  text-align: left;
+  color: #fff;
+  text-transform: uppercase;
+  transition: 0.7s ease;
+  display: none;
+}
+
+.slider-img.active{
+  width: 400px !important;
+  height: 450px !important;
+}
+
+.slider-img.active h1{
+   display: none;
+}
+
+.slider-img.active .details p, .slider-img.active .details h2{
+  display: block;
+}
+/* Navigation buttons - positioned on left & right sides at the bottom */
+.gallery-btn-group {
+  position: absolute;
+  bottom: 40px; /* 👈 moved from top: 50% to bottom */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  z-index: 10;
+}
+
+.btn {
+  background-color: #ff8fa6;
+  color: white;
+  text-decoration: none;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.btn:hover {
+   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+  background-color: #d14d75;
+}
+
+/* 📱 Responsive fix for mobile */
+@media (max-width: 600px) {
+  .gallery-btn-group {
+    bottom: 20px; /* lower spacing for smaller screens */
+    padding: 0 20px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+.footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: -10px;
+      background-color: #f8f9fa;
+      color: #fb6f92;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'FortalesiaPlain_PERSONAL_USE_ONLY';
+    }
+
+    .heart {
+      animation: blink 1s linear infinite;
+      width: 16px;
+      height: 16px;
+      margin-left: 5px;
+      margin-top: -10px;
+    }
+
+    @keyframes blink {
+      0% { opacity: 0; }
+      50% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+
