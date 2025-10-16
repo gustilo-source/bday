@@ -145,3 +145,63 @@ body {
   box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
   background-color: #d14d75;
 }
+
+
+@media (max-width: 768px) {
+  body {
+    background-size: cover;
+    padding: 90px 0;
+  }
+
+  /* Stack container vertically */
+  .container {
+    flex-direction: column;
+    gap: 40px;
+    padding-top: 40px;
+    align-items: center;
+  }
+
+  /* Stack polaroids vertically with smaller size */
+  .polaroid-group {
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 0;
+  }
+
+  .polaroid {
+    width: 45vw; /* responsive width */
+    height: auto; /* keep aspect ratio */
+  }
+
+  .polaroid img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Scale Spotify player */
+  .music-wrapper iframe {
+    width: 90vw; /* scale to 90% of screen width */
+    height: 370px; /* adjust height for mobile */
+  }
+
+  /* Footer font size */
+  .footer {
+    font-size: 14px;
+    padding: 8px 0;
+  }
+
+  /* Navigation buttons smaller and spaced */
+  .gallery-btn-group {
+    bottom: 50px;
+    padding: 0 10px;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+
+  .btn.next {
+    margin-right: 0;
+  }
+}
