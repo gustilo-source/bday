@@ -1,176 +1,156 @@
-
-
 @font-face {
   font-family: 'FortalesiaPlain_PERSONAL_USE_ONLY';
-  src: url('fonts/FortalesiaPlain_PERSONAL_USE_ONLY.otf') format('opentype'); 
+  src: url('fonts/FortalesiaPlain_PERSONAL_USE_ONLY.otf') format('opentype');
 }
 @font-face {
-  font-family: 'poppins';
-  src: url('fonts/poppins_regular.ttf') format('truetype'); 
+  font-family: 'Akira Expanded Demo';
+  src: url('fonts/Akira Expanded Demo.otf') format('truetype');
 }
 @font-face {
   font-family: 'Aston Script';
-  src: url('fonts/Aston Script.ttf') format('truetype'); 
+  src: url('fonts/Aston Script.ttf') format('truetype');
 }
 
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   font-family: "Jost", sans-serif;
 }
 
-/* Fixed: Remove the dot and use the same gradient as your first page */
 body {
- background: url('img/bg (2).png') no-repeat center center;
-background-size: cover;
-
-  overflow: hidden; /* Prevents scrolling issues */
-}
-
-body.fade-out {
-  opacity: 0;
-  transition: opacity 0.6s;
-}
-
-/* Hearts background - BEHIND everything */
-#canvas-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0; 
-    pointer-events: none;
-}
-
-.slider-container{
-  width: 100%;
-  height: 100vh;
-  background: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
+  background: url('img/bg (2).png') no-repeat center center;
   background-size: cover;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ======= MAIN CONTAINER ======= */
+.slider-container {
+  flex: 1;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   position: relative;
-  z-index: 1;
+  padding: 40px 20px 120px;
 }
 
-.slider-images{
+.slider-images {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 21px;
   position: relative;
-  z-index: 2;
+  flex-wrap: nowrap;
 }
 
-.slider-images img{
+/* ===== POLAROID STYLE ===== */
+.slider-img {
+  width: 110px;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.6s ease;
+  overflow: hidden;
+  z-index: 3;
+  background: #fff; /* Polaroid white frame */
+  padding: 10px 10px 35px; /* extra bottom for border */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25); /* soft shadow */
+  transform: rotate(0deg);
+}
+
+/* Slight tilt for natural scattered look */
+.slider-img:nth-child(odd) {
+  transform: rotate(-2deg);
+}
+.slider-img:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+/* Straighten and expand when active */
+.slider-img.active {
+  transform: rotate(0deg) scale(1.05);
+}
+
+/* Image inside the polaroid */
+.slider-images img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 4px;
+  box-shadow: none;
 }
 
-.slider-img{
-  width: 110px;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  transition: 0.7s ease;
-  z-index: 3;
-}
-
-.slider-images .slider-img:first-child, .slider-images .slider-img:last-child{
+/* Heights for desktop layout */
+.slider-images .slider-img:first-child,
+.slider-images .slider-img:last-child {
   height: 320px;
 }
-
-.slider-images .slider-img:nth-child(2), .slider-images .slider-img:nth-child(6){
+.slider-images .slider-img:nth-child(2),
+.slider-images .slider-img:nth-child(6) {
   height: 400px;
 }
-
-.slider-images .slider-img:nth-child(3), .slider-images .slider-img:nth-child(4), .slider-images .slider-img:nth-child(5){
+.slider-images .slider-img:nth-child(3),
+.slider-images .slider-img:nth-child(4),
+.slider-images .slider-img:nth-child(5) {
   height: 450px;
 }
 
-h1{
-  font-family: "Jost", sans-serif;
+/* Text overlay */
+h1 {
   font-size: 34px;
   font-weight: 700;
-  text-align: center;
   text-transform: uppercase;
   color: #fff;
   position: absolute;
   top: 50%;
   left: -5%;
   transform: rotate(270deg);
-  transition: 0.7s ease;
+  transition: 0.5s ease;
 }
-.details{
+
+.details {
   position: absolute;
   bottom: 43px;
   left: 43px;
 }
-  .slider-img .details {
-  left: 50%;
-  transform: translateX(-50%);
-  width: max-content;
-}
-.details .btn-group {
-  margin-left: auto;
-  margin-right: auto;
-}
 
-.details h2{
-  font-family: "Jost", sans-serif;
+.details h2 {
   font-size: 26px;
-  font-weight: 700;
-  text-align: left;
-  line-height: 44px;
-  text-align: left;
-  color: #fff;
+  color:  #d14d75;
   text-transform: uppercase;
-  transition: 0.7s ease;
-  display: none;
-}
-.details p{
-  font-family: "Jost", sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  text-align: left;
-  line-height: 33px;
-  text-align: left;
-  color: #fff;
-  text-transform: uppercase;
-  transition: 0.7s ease;
+font-family: 'Akira Expanded Demo';
+
   display: none;
 }
 
-.slider-img.active{
+/* Active image expands */
+.slider-img.active {
   width: 400px !important;
   height: 450px !important;
 }
 
-.slider-img.active h1{
-   display: none;
+.slider-img.active h1 {
+  display: none;
 }
 
-.slider-img.active .details p, .slider-img.active .details h2{
+.slider-img.active .details h2 {
   display: block;
 }
-/* Navigation buttons - positioned on left & right sides at the bottom */
+
+/* ======= BUTTONS ======= */
 .gallery-btn-group {
-  position: absolute;
-  bottom: 40px; /* 👈 moved from top: 50% to bottom */
-  left: 0;
   width: 100%;
+  margin-top: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 30px;
-  z-index: 10;
+  flex-wrap: wrap;
 }
 
 .btn {
@@ -186,50 +166,116 @@ h1{
 }
 
 .btn:hover {
-   transform: translateY(-2px);
+  transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
   background-color: #d14d75;
 }
 
-/* 📱 Responsive fix for mobile */
-@media (max-width: 600px) {
+/* ======= MOBILE / TABLET ======= */
+@media (max-width: 768px) {
+  .slider-container {
+    padding: 60px 10px 160px;
+  }
+
+  .slider-images {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+
+  /* Smaller when not clicked */
+  .slider-img {
+    width: 75vw !important;
+    height: 160px !important;
+    padding: 8px 8px 30px;
+  }
+
+  /* Expand when active */
+  .slider-img.active {
+    width: 90vw !important;
+    height: 300px !important;
+  }
+
+  h1 {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-50%) rotate(0deg);
+    font-size: 20px;
+  }
+
+  .details {
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .details h2 {
+    font-size: 18px;
+    text-align: center;
+  }
+
   .gallery-btn-group {
-    bottom: 20px; /* lower spacing for smaller screens */
-    padding: 0 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 190px;
+    margin-bottom: -140px;
+    padding: 0;
   }
 
   .btn {
-    padding: 10px 20px;
-    font-size: 14px;
+    width: auto;
+    font-size: 16px;
   }
 }
+
+/* ======= SMALL MOBILE ======= */
+@media (max-width: 480px) {
+  .slider-img {
+    width: 80vw !important;
+    height: 150px !important;
+  }
+
+  .slider-img.active {
+    width: 90vw !important;
+    height: 260px !important;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  .details h2 {
+    font-size: 20px;
+  }
+
+  .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .gallery-btn-group {
+    margin-top: 10px;
+  }
+}
+
+/* ======= FOOTER ======= */
 .footer {
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: -10px;
-      background-color: #f8f9fa;
-      color: #fb6f92;
-      text-align: center;
-      padding: 10px 0;
-      font-size: 16px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'FortalesiaPlain_PERSONAL_USE_ONLY';
-    }
+  background-color: #f8f9fa;
+  color: #fb6f92;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: 'FortalesiaPlain_PERSONAL_USE_ONLY';
+}
 
-    .heart {
-      animation: blink 1s linear infinite;
-      width: 16px;
-      height: 16px;
-      margin-left: 5px;
-      margin-top: -10px;
-    }
-
-    @keyframes blink {
-      0% { opacity: 0; }
-      50% { opacity: 1; }
-      100% { opacity: 0; }
-    }
+.heart {
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  margin-top: -10px;
+}
